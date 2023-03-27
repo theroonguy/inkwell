@@ -1,12 +1,14 @@
 from flask import render_template, flash, redirect, url_for
 from app import app
 from app.forms import LoginForm
+from app.models import Book
 
 @app.route('/')
 @app.route('/index')
 def index():
     user = {'username': 'Haroon and Ayman'}
-    return render_template('index.html', title='Home', user=user)
+    books = Book.query.all()
+    return render_template('index.html', title='Home', user=user, books=books)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

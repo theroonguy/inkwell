@@ -15,9 +15,9 @@ class User(db.Model):
 
 class Book(db.Model):
     book_id = db.Column(db.Integer, primary_key=True)
-    book_title = db.Column(db.String(64), index=True)
-    book_synopsis = db.Column(db.String(64), index=True)
-    content = db.Column(db.String(64), index=True)
+    book_title = db.Column(db.String(64))
+    book_synopsis = db.Column(db.String(64))
+    content = db.Column(db.String(64))
     date_uploaded = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'))
 
