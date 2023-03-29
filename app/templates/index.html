@@ -5,4 +5,8 @@
     {% for book in books %}
         {% include '_book.html' %}
     {% endfor %}
+    <br><p><b>list of users:</b>
+    {% for user in users %}
+        <a href="{{ url_for('user', username=user.username) }}">{{ user.username }}</a>
+    {% endfor %}
 {% endblock %}
