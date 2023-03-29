@@ -1,6 +1,6 @@
 <table>
     <tr valign="top">
         <td>[insert book cover]</td>
-        <td>{{ book.author.username }}: <br>{{ book.content }}</td>
+        <td>{{ book.author.username }}: <br><a href="{{ url_for('read', author=book.author.username, book=book.title) }}">{{ book.title }}</a></td>
     </tr>
 </table>

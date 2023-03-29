@@ -82,3 +82,12 @@ def upload():
         flash('Your book was uploaded!')
         return redirect(url_for('index'))
     return render_template('upload.html', form=form)
+
+@app.route('/<author>/read/<book>')
+@login_required
+def read(author, book):
+    author = User.query.filter_by(username=author).first_or_404()
+    book = Book.query.filter_by(title=book).first_or_404()
+    title = book.title
+    content = book.content
+    return render_template('read.html', author=author, book=book, title=title, content=content)
