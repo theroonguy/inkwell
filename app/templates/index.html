@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Hi, {{ user.username }}!</h1>
-    {% for book in books%}
+    <h1>Hi, {{ current_user.username }}!</h1>
+    {% for book in books %}
     <div><p>{{ book.author.username }} says: <b>{{ book.content }}</b></p></div>
     {% endfor %}
 {% endblock %}
