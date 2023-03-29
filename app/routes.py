@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, url_for, request
 from app import app, db
-from app.forms import LoginForm, RegistrationForm, UpdateProfileForm
+from app.forms import LoginForm, RegistrationForm, UpdateProfileForm, UploadForm
 from app.models import Book, User
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
@@ -63,7 +63,22 @@ def user(username):
         flash('Your profile has been updated')
         if form.username.data != '': return redirect(url_for('user', username=form.username.data))
         return redirect(url_for('user', username=current_user.username))
-    published_books = [
-        {'author': user, 'content': 'yes mhm'}
-    ]
+    elif request.method == 'GET':
+        form.username.data = current_user.username
+        form.firstname.data = current_user.firstname
+        form.lastname.data = current_user.lastname
+    published_books = user.books.all()
     return render_template('user.html', user=user, published_books=published_books, form=form)
+
+@app.route('/upload', methods=['GET', 'POST'])
+@login_required
+def upload():
+    user = User.query.filter_by(username=current_user.username).first_or_404()
+    form = UploadForm()
+    if form.validate_on_submit():
+        book = Book(title=form.title.data, content=form.content.data, author=user)
+        db.session.add(book)
+        db.session.commit()
+        flash('Your book was uploaded!')
+        return redirect(url_for('index'))
+    return render_template('upload.html', form=form)
