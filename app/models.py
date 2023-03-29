@@ -24,7 +24,7 @@ class User(UserMixin, db.Model):
 
 class Book(db.Model):
     book_id = db.Column(db.Integer, primary_key=True)
-    book_title = db.Column(db.String(64))
+    title = db.Column(db.String(64))
     content = db.Column(db.String(64))
     date_uploaded = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'))
