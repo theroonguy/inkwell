@@ -32,9 +32,18 @@ class Book(db.Model):
     date_uploaded = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'))
     cover = db.relationship('Image', backref='book', lazy='dynamic')
-
+    
     def __repr__(self):
         return '<Book {}>'.format(self.content)
+
+class UserBookAction(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable=False)
+    book_id = db.Column(db.Integer, db.ForeignKey('book.book_id'), nullable=False)
+    liked = db.Column(db.Boolean, default=False)
+    disliked = db.Column(db.Boolean, default=False)
+    book = db.relationship('Book', backref=db.backref('user_likes', cascade='all, delete-orphan'))
+    user = db.relationship('User', backref=db.backref('book_likes', cascade='all, delete-orphan'))
 
 class Image(db.Model):  # not working atm
     id = db.Column(db.Integer, primary_key=True)

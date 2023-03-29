@@ -46,3 +46,8 @@ class UploadForm(FlaskForm):
     cover = FileField('Cover')
     content = TextAreaField('Content', validators=[DataRequired()])
     submit = SubmitField('Upload')
+
+class BookActionsForm(FlaskForm):
+    like = BooleanField('Like')
+    dislike = BooleanField('Dislike')
+    submit = SubmitField('Submit')

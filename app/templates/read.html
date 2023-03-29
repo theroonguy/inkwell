@@ -2,6 +2,25 @@
 
 {% block content %}
     <h1>{{ title }}</h1>
-    <h3>By {{ author.username }}</h3>
+    <h3>By <a href="{{ url_for('user', username=author.username) }}">{{ author.username }}</a></h3>
     <p>{{ content }}</p>
+    <p>likes: {{ likes }}, dislikes: {{ dislikes }}</p>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.like.label }}<br>
+            {{ form.like(size=32) }}<br>
+            {% for error in form.like.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.dislike.label }}<br>
+            {{ form.dislike(size=32) }}<br>
+            {% for error in form.dislike.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
 {% endblock %}

@@ -45,7 +45,11 @@
         <p>{{ form.submit() }}</p>
     </form>
     {% endif %}
-    <hr>
+    <hr>liked books:
+    {% for book in liked_books %}
+        {% include '_book.html' %}
+    {% endfor %}
+    <hr>published books:
     {% for book in published_books %}
         {% include '_book.html' %}
     {% endfor %}
