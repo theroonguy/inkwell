@@ -11,6 +11,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     books = db.relationship('Book', backref='author', lazy='dynamic')
+    about_me = db.Column(db.String(140))
 
     def __repr__(self): # __repr__ tells python how to print objects of this class for debugging
         return '<User {}>'.format(self.username)
@@ -30,9 +31,17 @@ class Book(db.Model):
     content = db.Column(db.String(64))
     date_uploaded = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'))
+    cover = db.relationship('Image', backref='book', lazy='dynamic')
 
     def __repr__(self):
         return '<Book {}>'.format(self.content)
+
+class Image(db.Model):  # not working atm
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128), nullable=False)
+    data = db.Column(db.LargeBinary, nullable=False)
+    rendered_data = db.Column(db.Text, nullable=False)
+    book_id = db.Column(db.Integer, db.ForeignKey('book.book_id'))
 
 @login.user_loader
 def load_user(id):

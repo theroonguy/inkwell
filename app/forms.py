@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
-from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, FileField
+from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
 from app.models import User
 
 class LoginForm(FlaskForm):
@@ -33,14 +33,16 @@ class UpdateProfileForm(FlaskForm):
     username = StringField('Username')
     firstname = StringField('First Name')
     lastname = StringField('Last Name')
+    about_me = TextAreaField('About me', validators=[Length(min=0, max=140)])
     submit = SubmitField('Update')
 
-    def validate_username(self, username):
-        user = User.query.filter_by(username=username.data).first()
-        if user is not None:
-            raise ValidationError('Please use a different username.')
+    #def validate_username(self, username):
+    #    user = User.query.filter_by(username=username.data).first()
+    #    if user is not None:
+    #        raise ValidationError('Please use a different username.')
 
 class UploadForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
+    cover = FileField('Cover')
     content = TextAreaField('Content', validators=[DataRequired()])
     submit = SubmitField('Upload')

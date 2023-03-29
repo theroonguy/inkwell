@@ -1,10 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>User: {{ user.username }}</h1>
-    <h3>{{ user.firstname }} {{ user.lastname }}</h3>
+    <table>
+        <tr valign="top">
+            <td><h1>{{ user.username }}</h1></td>
+            <td><p><br>{{ user.firstname }} {{ user.lastname }}</p></td>
+        </tr>
+        <tr>
+            <td>{% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}</td>
+        </tr>
+    </table>
+    
     {% if current_user.user_id == user.user_id %}
-    <p>this is your profile (crazy right?)</p>
     <form action="" method="post">
         {{ form.hidden_tag() }}
         <p>
@@ -28,13 +35,18 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+        <p>
+            {{ form.about_me.label }}<br>
+            {{ form.about_me(size=32) }}<br>
+            {% for error in form.about_me.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
         <p>{{ form.submit() }}</p>
     </form>
     {% endif %}
     <hr>
     {% for book in published_books %}
-    <p>
-    {{ book.author.username }}: <b>{{ book.content }}</b>
-    </p>
+        {% include '_book.html' %}
     {% endfor %}
 {% endblock %}
