@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, jsonify
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, UpdateProfileForm, UploadForm, BookActionsForm
 from app.models import Book, User, UserBookAction
@@ -9,10 +9,26 @@ import base64
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
-def render_picture(data):
+# def render_picture(data):
+#     render_pic = base64.b64encode(data).decode('ascii') 
+#     return render_pic
 
-    render_pic = base64.b64encode(data).decode('ascii') 
-    return render_pic
+def book_serializer(book):
+    return {
+        'book_id': book.book_id,
+        'title': book.title,
+        'content': book.content,
+        'user_id': book.user_id
+    }
+
+def user_serializer(user):
+    return {
+        'user_id': user.user_id,
+        'username': user.username,
+        'firstname': user.firstname,
+        'lastname': user.lastname,
+        'email': user.email
+    }
 
 @app.route('/')
 @app.route('/index')
@@ -140,4 +156,11 @@ def read(author, book):
             form.dislike.data = True    
 
     return render_template('read.html', author=author, book=book, title=title, content=content, form=form, likes=likes, dislikes=dislikes)
-    
+
+@app.route('/api/books', methods=['GET'])
+def books():
+    books = Book.query.all()
+    serialized_books = [book_serializer(book) for book in books]
+    dict = {"books": serialized_books}
+    return jsonify(dict)
+    # return {"books": ["test", "test2"]}
