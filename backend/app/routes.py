@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request, jsonify
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, UpdateProfileForm, UploadForm, BookActionsForm
-from app.models import Book, User, UserBookAction
+from app.models import Book, User, UserBookAction, BookSchema, UserSchema
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from base64 import b64encode
@@ -160,7 +160,17 @@ def read(author, book):
 @app.route('/api/books', methods=['GET'])
 def books():
     books = Book.query.all()
-    serialized_books = [book_serializer(book) for book in books]
-    dict = {"books": serialized_books}
-    return jsonify(dict)
+    # serialized_books = [book_serializer(book) for book in books]
+    # dict = {"books": serialized_books}
+    # return jsonify(dict)
     # return {"books": ["test", "test2"]}
+    book_schema = BookSchema(many=True)
+    result = book_schema.dump(books)
+    return jsonify(result)
+
+@app.route('/api/users', methods=['GET'])
+def users():
+    users = User.query.all()
+    user_schema = UserSchema(many=True)
+    result = user_schema.dump(users)
+    return jsonify(result)
