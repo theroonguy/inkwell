@@ -1,0 +1,7 @@
+node_modules/
+*.cmd
+*.ps1
+.env
+*.log
+build/
+dist/

@@ -16,8 +16,8 @@ function LoginPage() {
     }
 
     return (
-        <div>
-            <div className="form">
+        <div className="login-page">
+            <div className="form-container">
                 <h1>Log In</h1>
                 <form>
                     <Form.Group>
