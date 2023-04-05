@@ -1,9 +1,16 @@
 /* src/styles/colors.css */
 :root {
-    --primary-color: #ff0000; /* YouTube red */
-    --secondary-color: #ffffff; /* White */
-    --background-color: #282828; /* Dark gray */
-    --text-color: #ffffff; /* White */
-    /* Add more colors as needed */
-  }
-  
+  --primary-background-color: #080710;
+  --secondary-background-color: rgba(255, 255, 255, 0.13);
+  --input-background-color: rgba(255, 255, 255, 0.07);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --text-color: #ffffff;
+  --placeholder-color: #e5e5e5;
+  --button-background-color: #ffffff;
+  --button-text-color: #080710;
+  --button-hover-background-color: #e0e0e0;
+  --register-link-hover-background-color: rgba(255, 255, 255, 0.2);
+  --register-link-hover-border-color: rgba(255, 255, 255, 0.5);
+  --register-link-hover-text-color: #ffffff;
+
+}
