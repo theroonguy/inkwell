@@ -6,15 +6,43 @@ function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const submitForm = () => {
-    console.log("Form Submitted");
-    console.log(username);
-    console.log(password);
+  // const submitForm = () => {
+  //   console.log("Form Submitted");
+  //   console.log(username);
+  //   console.log(password);
 
-    setUsername("");
-    setPassword("");
+  //   setUsername("");
+  //   setPassword("");
+  // };
+
+  const submitForm = async (e) => {
+    e.preventDefault();
+  
+    const response = await fetch('http://localhost:5000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
+    });
+  
+    const data = await response.json();
+  
+    if (response.ok) {
+      // Save user information to local storage or use state management library
+      localStorage.setItem('user', JSON.stringify(data));
+  
+      // Redirect to the home page
+      console.log('Login successful:', data);
+      // Replace this with the actual URL of your home page
+      window.location.replace('/');
+    } else {
+      // Show an error message
+      console.log('Login failed:', data);
+      alert('Invalid username or password');
+    }
   };
-
+  
   return (
     <div className="login-page">
       <div className="form-container">
@@ -45,9 +73,7 @@ function LoginPage() {
               <Button onClick={submitForm}>Log In</Button>
             </Form.Group>
             <Form.Group>
-              <Link className="register-link" to="/register">
-                Register
-              </Link>
+            <small>Don't have an account? <Link to="/register">Register</Link></small>
             </Form.Group>
           </div>
         </Form>

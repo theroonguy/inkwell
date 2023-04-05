@@ -11,7 +11,7 @@
 }
 
 body {
-  /*background-color: var(--primary-background-color);*/
+  background-color: var(--primary-background-color);
   font-family: 'Poppins', sans-serif;
 }
 
