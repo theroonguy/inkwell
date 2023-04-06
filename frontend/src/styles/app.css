@@ -1,0 +1,83 @@
+@import './colors.css';
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--primary-background-color);
+  color: var(--text-color);
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.left-links,
+.right-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.left-links {
+  margin-right: 2rem;
+}
+
+.right-links {
+  margin-left: 2rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  animation: fadeIn 1s ease-in;
+}
+
+.left-links li,
+.right-links li {
+  animation: fadeInLinks 1s ease-in forwards;
+}
+
+.left-links li {
+  animation-delay: 1s;
+}
+
+.left-links li:last-child,
+.right-links li:first-child {
+  animation-delay: 1.2s;
+}
+
+.right-links li:last-child {
+  animation-delay: 1.4s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInLinks {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+a:hover {
+  color: var(--placeholder-color);
+}
