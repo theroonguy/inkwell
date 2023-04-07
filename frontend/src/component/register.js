@@ -43,8 +43,8 @@ const RegisterPage = () => {
     console.log(watch("confirmPassword"));
 
     return (
-        <div>
-            <div className="form">
+        <div className = "login-page">
+            <div className="form-container">
                 <h1>Register</h1>
                 <form>
                     <Form.Group>
