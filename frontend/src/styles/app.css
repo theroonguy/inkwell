@@ -32,25 +32,16 @@ body {
 
 .logo {
   font-size: 1.5rem;
-  animation: fadeIn 1s ease-in;
 }
 
 .left-links li,
 .right-links li {
-  animation: fadeInLinks 1s ease-in forwards;
+  animation: fadeInLinks 1s ease-in;
 }
 
-.left-links li {
-  animation-delay: 1s;
-}
-
-.left-links li:last-child,
-.right-links li:first-child {
-  animation-delay: 1.2s;
-}
-
-.right-links li:last-child {
-  animation-delay: 1.4s;
+.right-links .search:hover {
+  color: var(--placeholder-color);
+  cursor: pointer;
 }
 
 @keyframes fadeIn {

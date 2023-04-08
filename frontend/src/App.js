@@ -1,12 +1,16 @@
 //import logo from './logo.svg';
 import React, { Component } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import './styles/app.css';
 import Home from './component/home';
 import Books from './component/books';
 import Users from './component/users';
 import RegisterPage from './component/register';
 import LoginPage from './component/login';
+
+
 
 class App extends Component {
   render() {
@@ -29,6 +33,10 @@ class App extends Component {
               </li>
               <li>
                 <Link to="/login">Login</Link>
+              </li>
+              <li>
+              <FontAwesomeIcon icon={faSearch} className="right-links search"/>
+                
               </li>
             </ul>
           </header>
