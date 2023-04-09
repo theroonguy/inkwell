@@ -3,12 +3,14 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import './styles/app.css';
+import './styles/temp_app.css';
 import Home from './component/home';
 import Books from './component/books';
 import Users from './component/users';
 import RegisterPage from './component/register';
 import LoginPage from './component/login';
+import Search from './component/search';
+
 
 
 
@@ -18,27 +20,35 @@ class App extends Component {
       <Router>
         <div className="App">
           <header className="header">
+            {/* <div classname="link-container"> */}
             <ul className="left-links">
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/" className="button">Home</Link>
               </li>
               <li>
-                <Link to="/books">Books</Link>
+                <Link to="/books" className="button">Books</Link>
               </li>
+              <li>
+                <Link to="/register" className="button">Register</Link>
+              </li>
+              
             </ul>
             <h1 className="logo">INKWELL</h1>
             <ul className="right-links">
               <li>
-                <Link to="/users">Users</Link>
+                <Link to="/users" className="button">Users</Link>
               </li>
               <li>
-                <Link to="/login">Login</Link>
+                <Link to="/login" className="button">Login</Link>
               </li>
               <li>
-              <FontAwesomeIcon icon={faSearch} className="right-links search"/>
-                
+                <div className="search-wrapper">
+                  <Search className='right-links search' />
+                </div>
+
               </li>
             </ul>
+            {/* </div> */}
           </header>
         </div>
         <Routes>

@@ -1,47 +1,38 @@
-
 @import './colors.css';
-
+@import './hamburger.css';
 body {
   font-family: Arial, sans-serif;
   background-color: var(--primary-background-color);
   color: var(--text-color);
 }
 
-/* .header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  flex-wrap: wrap;
-} */
-
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem;
+  flex-wrap: wrap;
 }
-
 
 .left-links,
 .right-links {
-  list-style: none;
   display: flex;
-  gap: 1rem;
+  flex: 1;
+  align-items: center;
+  animation: fadeInLinks 1s ease-in;
+  list-style: none;
+  gap: .5rem;
   margin: 0;
   padding: 0;
 }
 
 .left-links {
-  margin-right: 2rem;
+  justify-content: flex-end;
 }
 
 .right-links {
-  margin-left: 2rem;
+  justify-content: flex-start;
 }
-
-/* .logo {
-  font-size: 1.5rem;
-} */
 
 .logo {
   flex: 1;
@@ -49,40 +40,16 @@ body {
   font-size: 1.5rem;
 }
 
-
-/* .left-links li,
-.right-links li {
-  animation: fadeInLinks 1s ease-in;
-} */
-
 .right-links .search:hover {
   color: var(--placeholder-color);
   cursor: pointer;
 }
-
-.left-links,
-.right-links {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  animation: fadeInLinks 1s ease-in;
-
-}
-
-.left-links {
-  justify-content: flex-start;
-}
-.right-links {
-  justify-content: flex-end;
-}
-
 
 .search-wrapper {
   flex-grow: 1;
   display: flex;
   justify-content: flex-end;
 }
-
 
 @keyframes fadeIn {
   from {
@@ -120,7 +87,6 @@ body {
   }
 }
 
-
 a {
   text-decoration: none;
   color: var(--text-color);
@@ -128,16 +94,4 @@ a {
 
 a:hover {
   color: var(--placeholder-color);
-}
-
-/* .link-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-} */
-
-.header-links {
-  display: flex;
-  gap: 1rem;
 }
