@@ -1,9 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import '../styles/search.css';
 
 const Search = () => {
+  const history = useNavigate();
   const [searchInputVisible, setSearchInputVisible] = useState(false);
   const searchInputRef = useRef();
   const searchIconRef = useRef();
@@ -12,10 +15,26 @@ const Search = () => {
     setSearchInputVisible(!searchInputVisible);
   };
 
-  const handleSearchSubmit = (e) => {
+  const handleSearchSubmit = async (e) => {
     e.preventDefault();
-    // Implement your search functionality here
+    const query = searchInputRef.current.value;
+  
+    try {
+      const response = await axios.get('/api/search', { params: { query } });
+      // Replace '/search-results' with the path you want for the search results page
+      history.push({
+        pathname: '/search-results',
+        state: {
+          query,
+          books: response.data.books,
+          users: response.data.users,
+        },
+      });
+    } catch (error) {
+      console.error('Error fetching search results:', error);
+    }
   };
+  
 
   useEffect(() => {
     const handleClickOutside = (event) => {

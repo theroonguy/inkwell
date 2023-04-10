@@ -6,6 +6,9 @@ from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from base64 import b64encode
 import base64
+from sqlalchemy import or_
+from sqlalchemy.orm import joinedload
+
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
@@ -178,3 +181,31 @@ def users():
     user_schema = UserSchema(many=True)
     result = user_schema.dump(users)
     return jsonify(result)
+
+
+
+@app.route('/api/search', methods=['GET'])
+def search():
+    query = request.args.get('query')
+    
+    # Search for books
+    books = Book.query.filter(Book.title.contains(query)).all()
+    book_schema = BookSchema(many=True)
+    
+    # Search for users
+    users = User.query.filter(
+        or_(
+            User.username.contains(query),
+            User.firstname.contains(query),
+            User.lastname.contains(query),
+            User.email.contains(query)
+        )
+    ).all()
+    user_schema = UserSchema(many=True)
+
+    result = {
+        'users': user_schema.dump(users),
+        'books': book_schema.dump(books)
+    }
+    return jsonify(result)
+

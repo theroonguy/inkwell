@@ -98,3 +98,12 @@
     padding: 0 16px 0 0 !important;
   }
   
+
+.search-results-container {
+padding: 1rem;
+}
+
+.books-results,
+.users-results {
+margin-bottom: 2rem;
+}

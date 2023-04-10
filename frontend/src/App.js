@@ -10,6 +10,7 @@ import Users from './component/users';
 import RegisterPage from './component/register';
 import LoginPage from './component/login';
 import Search from './component/search';
+import SearchResults from './component/searchresults';
 
 
 
@@ -57,6 +58,7 @@ class App extends Component {
           <Route exact path="/users" element={<Users />} />
           <Route exact path="/login" element={<LoginPage />} />
           <Route exact path="/register" element={<RegisterPage />} />
+          <Route exact path="/search-results" element={<SearchResults />} />
         </Routes>
       </Router>
     );
