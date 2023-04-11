@@ -1,0 +1,59 @@
+/* src/styles/main.css */
+@import './colors.css';
+
+/* Global styles */
+*,
+*:before,
+*:after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* src/styles/books.css */
+.books-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 30px;
+    padding: 30px;
+}
+
+.book-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+
+}
+
+.book-title {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+}
+
+.book-caption {
+    font-size: 1em;
+    color: #666;
+    flex: 1;
+}
+
+.book-card:hover {
+    background-color: var(--input-hover-background-color);
+    cursor: pointer;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(8, 7, 16, 0.4);
+  }
+
+  .books-page {
+    padding: 30px;
+  }
+  
+  .books-page h1 {
+    margin-bottom: 20px;
+  }
+  

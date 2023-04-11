@@ -1,0 +1,42 @@
+/* hamburger.css */
+.hamburger {
+    display: none;
+    cursor: pointer;
+  }
+  
+  .hamburger-menu {
+    display: none;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .hamburger {
+      display: block;
+    }
+  
+    .header {
+      justify-content: space-between;
+    }
+  
+    .left-links,
+    .right-links {
+      display: none;
+    }
+  
+    .hamburger-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: white;
+      padding: 1rem;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+  
+    .hamburger-menu a {
+      color: black;
+    }
+  }
+  

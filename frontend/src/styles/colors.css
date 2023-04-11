@@ -1,0 +1,30 @@
+/* src/styles/colors.css */
+:root {
+  --primary-background-color: #250707;
+  --secondary-background-color: rgba(97, 7, 7, 0.13);
+  --input-background-color: rgba(255, 255, 255, 0.07);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --text-color: #ffffff;
+  --placeholder-color: #e5e5e5;
+  --button-background-color: #ffffff;
+  --button-text-color: #100707;
+  --button-hover-background-color: #e0e0e0;
+  --register-link-hover-background-color: rgba(255, 255, 255, 0.2);
+  --register-link-hover-border-color: rgba(255, 255, 255, 0.5);
+  --register-link-hover-text-color: #ffffff;
+  --input-hover-background-color: rgba(153, 149, 149, 0.1);
+/*
+  --primary-background-color: #080710;
+  --secondary-background-color: rgba(255, 255, 255, 0.13);
+  --input-background-color: rgba(255, 255, 255, 0.07);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --text-color: #ffffff;
+  --placeholder-color: #e5e5e5;
+  --button-background-color: #ffffff;
+  --button-text-color: #080710;
+  --button-hover-background-color: #e0e0e0;
+  --register-link-hover-background-color: rgba(255, 255, 255, 0.2);
+  --register-link-hover-border-color: rgba(255, 255, 255, 0.5);
+  --register-link-hover-text-color: #ffffff;
+*/
+}
